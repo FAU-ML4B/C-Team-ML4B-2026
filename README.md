@@ -16,10 +16,12 @@ Planned fall types:
 
 Planned non-fall activities:
 
-- walking
+- walking 
 - sitting
 - stairs
 - jumping
+- standup
+- sitdown
 
 ## Current Prototype
 
