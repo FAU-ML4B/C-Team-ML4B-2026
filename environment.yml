@@ -1,0 +1,18 @@
+name: ml4b-falldetection
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - pyarrow            # for parquet
+  - pip:
+      - tsfresh        # time-series feature extraction (Sprint 2)
+      - streamlit      # demo app (Sprint 2)
+      - plotly         # interactive charts in streamlit
