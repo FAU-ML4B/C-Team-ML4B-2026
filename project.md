@@ -66,7 +66,28 @@ The complete inference pipeline is implemented in `src/inference.py` and is wire
 
 ## 4. Results
 
-_To be added by the team._
+The final prototype successfully demonstrates an end-to-end smartphone-based fall detection workflow. A user can upload a Sensor Logger ZIP file through the Streamlit web application, the recording is extracted automatically, and the trained inference pipeline returns a fall prediction, fall type, confidence score, peak acceleration, and severity level.
+
+The strongest result is achieved by the Stage 1 binary classifier. Stage 1 distinguishes between fall events and activities of daily living (ADL) and achieved a mean Leave-One-Subject-Out (LOSO) macro-F1 score of **0.969** across the three subjects. This indicates that the model generalises well to unseen individuals for the primary task of deciding whether a fall occurred.
+
+The Stage 1 confusion matrix shows that the classifier is conservative but reliable. It produces no false positives on the ADL class and detects approximately 90% of fall events. This is a suitable behaviour for a prototype fall detection system, because avoiding false alarms during normal activities is important for user acceptance.
+
+![Stage 1 Confusion Matrix](docs/figures/confusion_stage1.png)
+
+Stage 2, which classifies the direction or type of an already detected fall, achieved a mean LOSO macro-F1 score of **0.213**. This is only slightly above the random baseline of **0.200** for a five-class classification problem. The Stage 2 confusion matrix shows that the model struggles to separate the fall directions reliably, especially for the `left` and `stumble` classes.
+
+![Stage 2 Confusion Matrix](docs/figures/confusion_stage2.png)
+
+The deployed Streamlit application was tested with real Sensor Logger ZIP files. After fixing the ZIP extraction path and integrating the trained `.joblib` models, the app successfully returned real model predictions instead of mock values. One example prediction from the online app returned:
+
+```json
+{
+  "fall": true,
+  "type": "stumble",
+  "confidence": 0.97,
+  "peak_g": 24.97,
+  "severity": "severe"
+}
 
 ## 5. Discussion
 
