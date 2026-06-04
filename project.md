@@ -80,7 +80,7 @@ Three subjects participated in the data collection. We deliberately did not recr
 | Subject  | Sex     | Age    | Height  | Weight |
 |----------|---------|--------|---------|--------|
 | Felix    | male    | 25     | 1.80 m  | 71 kg  |
-| Leopold  | [TODO]  | [TODO] | [TODO]  | [TODO] |
+| Leopold  | male    | 23     | 1.83 m  | 75 kg  |
 | Lea      | [TODO]  | [TODO] | [TODO]  | [TODO] |
 
 The small sample size and limited demographic diversity of our subject pool is acknowledged as a primary limitation of this study, and we discuss its implications for model generalisation in §3.3.
