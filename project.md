@@ -91,7 +91,7 @@ Three smartphone placements are represented in the dataset:
 
 - **Trouser pocket** (`pocket`): contributed by Felix (left front trouser pocket, vertical orientation) and Lea, who contributed an additional set of pocket recordings on 04 June 2026 to decouple her placement signal from her subject signal.
 - **Hand-held** (`hand`): contributed by Lea and Leopold. [TODO Team: please confirm which hand and how the phone was held — vertical or horizontal, screen facing inward or outward.]
-- **Chest pocket** (`chest`): contributed by Leopold and Felix, who added chest recordings on 04 June 2026 in the same multi-placement push. [TODO Team: please specify which chest pocket Leopold used and how the phone was secured.]
+- **Chest pocket** (`chest`): contributed by Leopold and Felix, who added chest recordings on 04 June 2026 in the same multi-placement push. The smartphone was placed in the front chest pocket of a worn upper garment and remained inside the pocket during the recording. This setup was used to approximate a body-centred placement while keeping the phone position realistic for everyday use.
 
 The original data collection assigned a single placement per subject, which created a confounding between subject and placement. Following the tutor's recommendation to test multiple sensor setups, the dataset was deliberately extended so that two of the three subjects (Felix and Lea) contributed recordings from two different placements. This partially decouples the two factors and is reflected in the per-subject results presented in §3.3.
 
