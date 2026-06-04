@@ -8,17 +8,20 @@ The goal is to detect whether a fall occurred based on smartphone accelerometer 
 
 Planned fall types:
 
-- forward
-- backward
-- sideways
 - trip-stumble
+- forward
+- left side 
+- right side
+- backwards
 
 Planned non-fall activities:
 
-- walking
+- walking 
 - sitting
 - stairs
 - jumping
+- standup
+- sitdown
 
 ## Current Prototype
 

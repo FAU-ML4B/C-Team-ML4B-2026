@@ -10,6 +10,31 @@ sys.path.append(str(PROJECT_ROOT))
 from src.inference import predict
 
 
+def find_recording_folder(tmp_path: Path) -> Path:
+    """
+    Find the actual Sensor Logger recording folder after ZIP extraction.
+
+    Sensor Logger ZIP files often contain one top-level folder with files like:
+    Accelerometer.csv, Gyroscope.csv, Gravity.csv.
+
+    The outer temp folder itself usually does not contain these CSV files directly.
+    Therefore, we search for the folder that contains Accelerometer.csv.
+    """
+    ignored_folders = {"__MACOSX"}
+
+    for folder in tmp_path.rglob("*"):
+        if not folder.is_dir():
+            continue
+
+        if any(part in ignored_folders for part in folder.parts):
+            continue
+
+        if (folder / "Accelerometer.csv").exists():
+            return folder
+
+    return tmp_path
+
+
 st.set_page_config(
     page_title="Smartphone Fall Detection",
     page_icon="📱",
@@ -39,14 +64,15 @@ if uploaded_file is not None:
 
         st.success("File uploaded and extracted successfully.")
 
-        result = predict(tmp_path)
+        recording_path = find_recording_folder(tmp_path)
+        result = predict(recording_path)
 
         col1, col2, col3, col4 = st.columns(4)
 
         col1.metric("Fall detected?", "YES" if result["fall"] else "NO")
-        col2.metric("Fall type", result["type"])
+        col2.metric("Fall type", result["type"] if result["type"] else "—")
         col3.metric("Confidence", f"{result['confidence']:.0%}")
-        col4.metric("Peak acceleration", f"{result['peak_g']} g")
+        col4.metric("Peak acceleration", f"{result['peak_g']:.2f} g")
 
         st.subheader("Prediction result")
         st.json(result)
@@ -58,5 +84,8 @@ if uploaded_file is not None:
                 if p.is_file()
             ]
             st.write(files)
+
+        with st.expander("Recording folder used for prediction"):
+            st.write(str(recording_path.relative_to(tmp_path)))
 else:
     st.info("Please upload a Sensor Logger ZIP file to start.")

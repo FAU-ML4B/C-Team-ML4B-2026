@@ -176,7 +176,11 @@ The final dataset consists of 290 Sensor Logger recordings collected by three su
 
 Stage 1 (binary fall vs ADL) achieves a mean LOSO macro-F1 of 0.987, with per-fold scores of 0.992 (Felix held out), 0.970 (Lea), and 1.000 (Leopold). The confusion matrix shows zero false positives on the ADL class across all folds and a false-negative rate of approximately four percent on the fall class. We interpret this as a conservative but reliable classifier: the model rarely raises false alarms during normal activities, including the difficult ADL classes `run` and `jump` that produce acceleration peaks comparable to soft falls.
 
+![Stage 1 Confusion Matrix](docs/figures/confusion_stage1.png)
+
 Stage 2 (5-class fall type classification) achieves a mean LOSO macro-F1 of 0.258, with per-fold scores of 0.370 (Felix held out), 0.209 (Lea), and 0.196 (Leopold). The random baseline for a 5-class problem is 0.200. The Felix-held-out fold reaches nearly twice the random baseline, indicating that the model is capable of extracting meaningful direction signal when the training set covers enough placement-subject combinations. The aggregate confusion matrix shows non-zero predictions for all five classes, with the largest off-diagonal entry being a confusion between `left` and `backwards` (probability 0.65), which is physically plausible given that both fall directions involve backward body motion.
+
+![Stage 2 Confusion Matrix](docs/figures/confusion_stage2.png)
 
 A summary of all results is given in Table 1.
 
@@ -192,6 +196,20 @@ A summary of all results is given in Table 1.
 | Stage 2 macro-F1 (Leopold held out) | 0.196 | 0.200           |
 
 Table 1: LOSO cross-validation results for both classifier stages.
+
+## End-to-end demonstration
+
+The final prototype successfully demonstrates an end-to-end smartphone-based fall detection workflow. A user uploads a Sensor Logger ZIP file through the Streamlit web application, the recording is extracted automatically, and the trained inference pipeline returns a fall prediction, fall type, confidence score, peak acceleration, and severity level. One example prediction from the deployed app returned:
+
+```json
+{
+  "fall": true,
+  "type": "stumble",
+  "confidence": 0.97,
+  "peak_g": 24.97,
+  "severity": "severe"
+}
+```
 
 ## 5. Discussion
 
