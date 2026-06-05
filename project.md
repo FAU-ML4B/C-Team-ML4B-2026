@@ -80,8 +80,8 @@ Three subjects participated in the data collection. We deliberately did not recr
 | Subject  | Sex     | Age    | Height  | Weight |
 |----------|---------|--------|---------|--------|
 | Felix    | male    | 25     | 1.80 m  | 71 kg  |
-| Leopold  | [TODO]  | [TODO] | [TODO]  | [TODO] |
-| Lea      | [TODO]  | [TODO] | [TODO]  | [TODO] |
+| Leopold  | male    | 23     | 1.83 m  | 75 kg  |
+| Lea      | female  | 23     | 1.64 m  | 49 kg  |
 
 The small sample size and limited demographic diversity of our subject pool is acknowledged as a primary limitation of this study, and we discuss its implications for model generalisation in §3.3.
 
@@ -90,8 +90,8 @@ The small sample size and limited demographic diversity of our subject pool is a
 Three smartphone placements are represented in the dataset:
 
 - **Trouser pocket** (`pocket`): contributed by Felix (left front trouser pocket, vertical orientation) and Lea, who contributed an additional set of pocket recordings on 04 June 2026 to decouple her placement signal from her subject signal.
-- **Hand-held** (`hand`): contributed by Lea and Leopold. [TODO Team: please confirm which hand and how the phone was held — vertical or horizontal, screen facing inward or outward.]
-- **Chest pocket** (`chest`): contributed by Leopold and Felix, who added chest recordings on 04 June 2026 in the same multi-placement push. [TODO Team: please specify which chest pocket Leopold used and how the phone was secured.]
+- **Hand-held** (`hand`): contributed by Lea and Leopold. For these recordings, the smartphone was held in both hands. The device orientation varied randomly between vertical and horizontal, while the arm position alternated between hanging naturally and a standard texting posture. Additionally, the screen direction (facing inward or outward) was randomized throughout the data collection.
+- **Chest pocket** (`chest`): contributed by Leopold and Felix, who added chest recordings on 04 June 2026 in the same multi-placement push. The smartphone was placed in the front chest pocket of a worn upper garment and remained inside the pocket during the recording. This setup was used to approximate a body-centred placement while keeping the phone position realistic for everyday use.
 
 The original data collection assigned a single placement per subject, which created a confounding between subject and placement. Following the tutor's recommendation to test multiple sensor setups, the dataset was deliberately extended so that two of the three subjects (Felix and Lea) contributed recordings from two different placements. This partially decouples the two factors and is reflected in the per-subject results presented in §3.3.
 
