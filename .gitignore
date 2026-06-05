@@ -206,3 +206,11 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 .DS_Store
+
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Raw and processed data (regenerated locally)
+data/raw/
+data/processed/
