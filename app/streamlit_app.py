@@ -35,13 +35,15 @@ def find_recording_folder(tmp_path: Path) -> Path:
     return tmp_path
 
 
+LOGO_PATH = str(Path(__file__).resolve().parent / "assets" / "safestep_logo.png")
+
 st.set_page_config(
-    page_title="Smartphone Fall Detection",
-    page_icon="📱",
+    page_title="SafeStep – Fall Detection",
+    page_icon=LOGO_PATH,
     layout="wide"
 )
 
-st.title("Smartphone-Based Fall Detection")
+st.image(LOGO_PATH, width=320)
 
 st.write(
     "Upload a Sensor Logger ZIP file to detect whether a fall occurred "
