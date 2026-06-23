@@ -1,4 +1,4 @@
-# Smartphone-Based Fall Detection
+# SafeStep
 
 A prototype fall-detection system using smartphone IMU data (accelerometer + gyroscope + gravity), built as the ML4B project (SoSe 2026, FAU Erlangen-Nürnberg).
 

@@ -197,7 +197,7 @@ A secondary finding worth reporting is the trend across successive dataset itera
 
 ## End-to-end demonstration
 
-The final prototype successfully demonstrates an end-to-end smartphone-based fall detection workflow. A user uploads a Sensor Logger ZIP file through the Streamlit web application, the recording is extracted automatically, and the trained inference pipeline returns a fall prediction, fall type, confidence score, peak acceleration, and severity level. One example prediction from the deployed app returned:
+The final prototype, deployed as a web application named SafeStep, successfully demonstrates an end-to-end smartphone-based fall detection workflow. A user uploads a Sensor Logger ZIP file through the application, the recording is extracted automatically, and the trained inference pipeline returns a fall prediction, fall type, confidence score, peak acceleration, and severity level. One example prediction from the deployed app returned:
 
 ```json
 {
