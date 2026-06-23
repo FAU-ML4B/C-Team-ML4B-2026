@@ -162,9 +162,11 @@ The most informative finding for the design of future iterations is the monotone
 
 These findings are consistent with prior work in smartphone-based fall classification, in which inter-subject generalisation is identified as a primary failure mode (Casilari et al. 2015). At a macro-F1 of 0.406 the Stage 2 classifier should still be interpreted as supplementary rather than diagnostic information in a deployed system: it provides a probabilistic indication of the fall direction that can usefully accompany the Stage 1 fall decision, but its individual class predictions are not yet reliable enough to support clinical or insurance use cases on their own. The trend of the past four iterations, however, suggests that this performance ceiling is set primarily by the size of our subject pool rather than by any inherent limit of the approach, and that further subject recruitment would continue to improve the classifier.
 
-## Reproducibility
+## Reproducibility and deployment
 
 The complete inference pipeline is implemented in `src/inference.py` and is wired into the Streamlit application through a single `predict(folder_path)` function. The function returns a dictionary containing the binary fall decision, the predicted fall direction, the Stage 1 confidence score, the peak acceleration in g, and a coarse severity bucket derived from the peak acceleration. The pipeline is reproducible end-to-end: rebuilding the dataset and retraining both models on an updated set of recordings requires only two commands (`python -m src.build_dataset` followed by `python -m src.train`).
+
+A stress test of the deployed application on 11 June 2026 revealed a small number of out-of-distribution false positives in which difficult activities of daily living (running, jumping, walking) were predicted as falls by Stage 1 with confidence between 0.56 and 0.71, while genuine falls in the same test set were predicted with confidence between 0.96 and 0.997. Because the two confidence distributions did not overlap, we added a confidence threshold of 0.75 at the application layer (not in the model itself, so that the LOSO results reported above remain unchanged). Predictions below this threshold are surfaced in the user interface as "uncertain" rather than as confirmed falls. This is a small, transparent operating-point adjustment that improves the user experience without altering the underlying classifier.
 
 ## 4. Results
 
