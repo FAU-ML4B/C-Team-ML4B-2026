@@ -1,19 +1,28 @@
+# Conda environment for the C-Team fall-detection project.
+# Mirrors requirements.txt but via conda-forge, with Python pinned to 3.11
+# (the version the released models were trained and serialised with).
+#
+# Recreate with:
+#   conda env create -f environment.yml
+#   conda activate ml4b-falldetection
+#
+# Then run the app with:  streamlit run app/streamlit_app.py
+# Or retrain with:        python -m src.build_dataset data/raw data/processed
+#                         python -m src.train
+
 name: ml4b-falldetection
 channels:
   - conda-forge
 dependencies:
   - python=3.11
   - pip
-  - numpy
-  - pandas
-  - scipy
-  - scikit-learn
-  - joblib
-  - matplotlib
-  - seaborn
-  - jupyterlab
-  - pyarrow            # for parquet
+  - numpy=2.4.6
+  - pandas=3.0.3
+  - scipy=1.17.1
+  - scikit-learn=1.8.0
+  - joblib=1.5.3
+  - matplotlib=3.10.9
+  - pyarrow=24.0.0
   - pip:
-      - tsfresh        # time-series feature extraction (Sprint 2)
-      - streamlit      # demo app (Sprint 2)
-      - plotly         # interactive charts in streamlit
+      - streamlit==1.58.0
+      - plotly==6.7.0
