@@ -1,8 +1,17 @@
+# Production dependencies for the C-Team fall-detection app + pipeline.
+# Pinned to the exact versions the released models were trained with.
+# A fresh `pip install -r requirements.txt` reproduces the deployed app.
+#
+# IMPORTANT: the trained models in models/*.joblib were created with
+# scikit-learn 1.8.0. Loading them with a different major version may
+# fail or silently change predictions, so the pin below is required.
 
-streamlit
-pandas
-numpy
-plotly
-joblib
-scikit-learn
-scipy
+streamlit==1.58.0
+pandas==3.0.3
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.8.0
+joblib==1.5.3
+matplotlib==3.10.9
+plotly==6.7.0
+pyarrow==24.0.0
