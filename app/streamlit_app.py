@@ -55,6 +55,28 @@ st.info(
     "Low-confidence positive predictions are shown as uncertain instead of confirmed falls."
 )
 
+with st.expander("About this app", expanded=False):
+    st.markdown(
+        """
+        **SafeStep** is a smartphone-based fall detection prototype.
+
+        The system uses smartphone IMU sensor data to classify whether a recording
+        contains a fall-like movement.
+
+        **Model structure:**
+        - **Stage 1:** Binary fall detection — distinguishes between `fall` and `no fall`.
+        - **Stage 2:** Fall-type estimation — estimates the possible fall direction or fall type after a fall was detected.
+
+        **Confidence threshold:**
+        - If the model predicts a fall with confidence below **0.75**, the app shows the result as **uncertain**.
+        - This avoids overconfident fall alerts for high-acceleration movements such as running or jumping.
+        - The primary output is the binary decision: `fall`, `uncertain`, or `no fall`.
+
+        **Important note:**  
+        Fall-type or fall-direction classification is experimental and should be interpreted with caution.
+        """
+    )
+
 uploaded_file = st.file_uploader(
     "Upload Sensor Logger ZIP",
     type=["zip"]
@@ -97,6 +119,12 @@ if uploaded_file is not None:
             col3.metric("Confidence", f"{confidence:.0%}")
             col4.metric("Peak acceleration", f"{peak_g:.2f} g")
 
+            st.info(
+                "Stage 2 fall-type classification is not shown for uncertain predictions. "
+                "The system detected a fall-like acceleration pattern, but the confidence is below "
+                "the threshold required for a confirmed fall alert."
+            )
+
         elif is_fall:
             shown_type = fall_type if fall_type else "unknown"
 
@@ -112,6 +140,14 @@ if uploaded_file is not None:
             col4.metric("Peak acceleration", f"{peak_g:.2f} g")
 
             st.metric("Severity", severity)
+
+            st.warning(
+                "Fall direction / fall-type classification is experimental. "
+                "The primary model output is the binary fall detection result. "
+                "The estimated fall type should be interpreted cautiously and is mainly used "
+                "as an additional indication, not as a fully reliable final classification. "
+                "See project.md §3.3 for details."
+            )
 
         else:
             st.success(
